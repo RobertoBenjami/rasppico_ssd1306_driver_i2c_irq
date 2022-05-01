@@ -34,4 +34,5 @@ The drawing functions work in the screen buffer memory, but the contents of the 
 It is possible to request interrupts with the callback function when the IRQ transmission is in a certain area of the display. Use the ssd1306_SetRasterInt function to set which display memory page you want to interrupt. The interrupt function must be named ssd1306_RasterIntCallback.
 The 64-line display contains 8 memory pages and the 32-row display contains 4 memory pages (see the ssd1306 chip data sheet).
 
+## DMA mode
 If anyone has any ideas on how to operate the display in DMA mode, email me. Unfortunately, when writing an 8-bit DMA, it also writes the contents of bits 0..2 of the data to bits 8..10 of the data_cmd register, which incorrectly causes RESTART, STOP, CMD commands (eg 0x01->0x0101, 0x02->0x0202, 0x04->0x0404). Enabling the #define USEDMA definition in the ssd1306.c file will allow you to use DMA, but it will not work properly depending on the image content.
